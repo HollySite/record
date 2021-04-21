@@ -23,6 +23,7 @@ public class SwiftRecordPlugin: NSObject, FlutterPlugin, AVAudioRecorderDelegate
           encoder: args["encoder"] as? Int ?? 0,
           bitRate: args["bitRate"] as? Int ?? 128000,
           samplingRate: args["samplingRate"] as? Float ?? 44100.0,
+          numChannels: args["numChannels"] as? Int ?? 2,
           result: result);
         break
       case "stop":
@@ -69,14 +70,14 @@ public class SwiftRecordPlugin: NSObject, FlutterPlugin, AVAudioRecorderDelegate
     result(hasPermission)
   }
 
-  fileprivate func start(path: String, encoder: Int, bitRate: Int, samplingRate: Float, result: @escaping FlutterResult) {
+    fileprivate func start(path: String, encoder: Int, bitRate: Int, samplingRate: Float, numChannels: Int, result: @escaping FlutterResult) {
     stopRecording()
 
     let settings = [
       AVFormatIDKey: getEncoder(encoder),
       AVEncoderBitRateKey: bitRate,
       AVSampleRateKey: samplingRate,
-      AVNumberOfChannelsKey: 2,
+      AVNumberOfChannelsKey: numChannels,
       AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
     ] as [String : Any]
 

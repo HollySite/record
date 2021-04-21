@@ -13,12 +13,15 @@ class Record {
     AudioEncoder encoder = AudioEncoder.AAC,
     int bitRate = 128000,
     double samplingRate = 44100.0,
+    int numChannels = 1,
   }) {
+    assert(numChannels == 1 || numChannels == 2);
     return _channel.invokeMethod('start', {
       "path": path,
       "encoder": encoder.index,
       "bitRate": bitRate,
       "samplingRate": samplingRate,
+      "numChannels": numChannels,
     });
   }
 
