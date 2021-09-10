@@ -101,6 +101,7 @@ public class RecordPlugin implements FlutterPlugin, ActivityAware, PluginRegistr
                         (int) call.argument("encoder"),
                         (int) call.argument("bitRate"),
                         (double) call.argument("samplingRate"),
+                        (int) call.argument("numChannels"),
                         result);
                 break;
             case "stop":
